@@ -1,0 +1,11 @@
+<resources>
+	<string name="app_name">FoodieMap</string>
+	
+	<string name="title_activity_add_place">AddPlaceActivity</string>
+	<string name="dummy_button">Dummy Button</string>
+	<string name="dummy_content">DUMMY\nCONTENT</string>
+	
+	<string name="yes">Yes</string>
+	<string name="no">No</string>
+	
+</resources>

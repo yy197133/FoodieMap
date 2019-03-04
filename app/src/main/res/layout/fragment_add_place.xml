@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools">
+	
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="@android:color/white"
+		>
+		
+		<androidx.appcompat.widget.Toolbar
+			android:id="@+id/toolbar"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:elevation="3dp"
+			android:background="@android:color/white"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+		
+		</androidx.appcompat.widget.Toolbar>
+		
+		
+		<EditText
+			android:id="@+id/place_name"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="8dp"
+			android:ems="10"
+			android:hint="地点名称"
+			android:inputType="textPersonName"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+		
+		<EditText
+			android:id="@+id/place_type"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:ems="10"
+			android:hint="类型"
+			android:inputType="textPersonName"
+			app:layout_constraintStart_toStartOf="@+id/place_name"
+			app:layout_constraintTop_toBottomOf="@+id/place_name" />
+		
+		<EditText
+			android:id="@+id/place_specialty"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:ems="10"
+			android:hint="特色菜"
+			android:inputType="textPersonName"
+			app:layout_constraintStart_toStartOf="@+id/place_type"
+			app:layout_constraintTop_toBottomOf="@+id/place_type" />
+		
+		<EditText
+			android:id="@+id/place_evaluation"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:ems="10"
+			android:hint="评价"
+			android:inputType="textPersonName"
+			app:layout_constraintStart_toStartOf="@+id/textView9"
+			app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+		
+		<TextView
+			android:id="@+id/textView9"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="是否去过"
+			android:textSize="16sp"
+			app:layout_constraintStart_toStartOf="@+id/place_specialty"
+			app:layout_constraintTop_toBottomOf="@+id/place_specialty" />
+		
+		<RadioGroup
+			android:id="@+id/radioGroup"
+			android:layout_width="0dp"
+			android:layout_height="32dp"
+			android:layout_marginStart="32dp"
+			android:layout_marginTop="8dp"
+			android:layout_marginEnd="8dp"
+			android:orientation="horizontal"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/textView9"
+			app:layout_constraintTop_toBottomOf="@+id/place_specialty">
+			
+			<RadioButton
+				android:id="@+id/rb_yes"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:checked="true"
+				android:text="YES" />
+			
+			<RadioButton
+				android:id="@+id/rb_no"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="NO" />
+		
+		</RadioGroup>
+		
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="地址："
+			app:layout_constraintStart_toStartOf="@+id/place_evaluation"
+			app:layout_constraintTop_toBottomOf="@+id/place_evaluation" />
+		
+		<Button
+			android:id="@+id/btn_confirm"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginEnd="16dp"
+			android:layout_marginBottom="50dp"
+			android:text="确定"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent" />
+		
+		<TextView
+			android:id="@+id/place_address"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginEnd="8dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toEndOf="@+id/textView"
+			app:layout_constraintTop_toTopOf="@+id/textView" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
