@@ -26,7 +26,7 @@
 		android:id="@+id/addPlaceFragment"
 		android:name="com.yoy.foodiemap.AddPlaceFragment"
 		android:label="AddPlaceFragment"
-		tools:layout="@layout/activity_add_place">
+		tools:layout="@layout/fragment_add_place">
 	</fragment>
 
 </navigation>
