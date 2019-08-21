@@ -7,6 +7,7 @@ buildscript {
         room_version = '2.1.0-alpha04'
         life_cycle_version = '2.0.0'
         navigation_version = '1.0.0-rc01'
+        permission_version = '4.5.0'
     }
 
 

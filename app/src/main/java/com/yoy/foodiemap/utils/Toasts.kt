@@ -3,6 +3,7 @@ package com.yoy.foodiemap.utils
 import android.content.Context
 import android.view.Gravity
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 
 /**
  * Created by yuyang on 2017/6/30.
@@ -18,6 +19,7 @@ fun Context.toastLong(msg: Int,yOffset: Int = 0) = ToastInstance.show(this,msg,T
 
 fun Context.toastLong(msg: CharSequence,yOffset: Int = 0) = ToastInstance.show(this,msg,Toast.LENGTH_LONG,yOffset)
 
+fun Fragment.toast(msg: CharSequence,yOffset: Int = 0) = ToastInstance.show(this.requireContext(),msg,Toast.LENGTH_SHORT,yOffset)
 
 
 object ToastInstance{

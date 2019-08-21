@@ -1,5 +1,7 @@
 package com.yoy.foodiemap
 
+import android.Manifest
+import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,11 +24,20 @@ import com.amap.api.maps.Projection
 import com.amap.api.maps.model.*
 import com.yoy.foodiemap.adapters.InfoWindowAdapter
 import com.yoy.foodiemap.utils.Injector
+import com.yoy.foodiemap.utils.toast
 import com.yoy.foodiemap.viewmodels.PlacesViewModel
 import kotlinx.android.synthetic.main.fragment_map.view.*
+import permissions.dispatcher.NeedsPermission
+import permissions.dispatcher.OnNeverAskAgain
+import permissions.dispatcher.OnPermissionDenied
+import permissions.dispatcher.RuntimePermissions
 
+@RuntimePermissions
 class MapFragment : Fragment(), AMapLocationListener {
 
+    companion object {
+        const val TAG = "MapFragment"
+    }
 
     private var rootView: View? = null
 
@@ -85,7 +96,7 @@ class MapFragment : Fragment(), AMapLocationListener {
     private fun init() {
         if (!this::aMap.isInitialized) {
             aMap = mMapView.map
-            locate()
+            locateWithPermissionCheck()
         }
         addMarkers()
     }
@@ -181,7 +192,9 @@ class MapFragment : Fragment(), AMapLocationListener {
     }
 
 
-    private fun locate() {
+    @NeedsPermission(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
+    fun locate() {
+        Log.i(TAG, "loacte")
         if (mLocationClient == null) {
             val locationClientOption = AMapLocationClientOption()
             mLocationClient = AMapLocationClient(context)
@@ -201,6 +214,26 @@ class MapFragment : Fragment(), AMapLocationListener {
             // 在单次定位情况下，定位无论成功与否，都无需调用stopLocation()方法移除请求，定位sdk内部会移除
             mLocationClient?.startLocation()
         }
+    }
+
+    @OnPermissionDenied(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
+    fun onLocationDenied(){
+        AlertDialog.Builder(requireContext())
+            .setTitle("")
+            .setMessage("定位权限被禁止，将无法提供位置信息...")
+            .setPositiveButton("确定"){dialog, _ -> dialog.dismiss() }
+            .create()
+            .show()
+    }
+
+    @OnNeverAskAgain(Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION)
+    fun onLocationNeverAskAgain(){
+        toast("请到设置中开启定位权限~")
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        onRequestPermissionsResult(requestCode, grantResults)
     }
 
     private fun addMarkers() {

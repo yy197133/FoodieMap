@@ -14,10 +14,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
     }
     dataBinding {
         enabled = true
     }
+
+
+
+
     buildTypes {
         release {
             minifyEnabled false
@@ -39,6 +47,11 @@ android {
             storePassword '123456'
         }
     }
+
+    lintOptions{
+
+    }
+
 }
 
 dependencies {
@@ -65,4 +78,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc01'
+
+    //权限
+    implementation "org.permissionsdispatcher:permissionsdispatcher:$permission_version"
+    kapt "org.permissionsdispatcher:permissionsdispatcher-processor:$permission_version"
 }
