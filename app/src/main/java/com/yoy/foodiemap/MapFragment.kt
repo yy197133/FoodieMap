@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -32,6 +33,7 @@ class MapFragment : Fragment(), AMapLocationListener {
     private lateinit var viewModel: PlacesViewModel
 
     private lateinit var mMapView: MapView
+    private lateinit var mLocationBtn: ImageButton
     private lateinit var aMap: AMap
     private var mLocationClient: AMapLocationClient? = null
     private var useMoveToLocationWithMapMode = true
@@ -60,6 +62,7 @@ class MapFragment : Fragment(), AMapLocationListener {
         if (rootView == null){
             rootView = inflater.inflate(R.layout.fragment_map,container,false)
             mMapView = rootView!!.mapView
+            mLocationBtn = rootView!!.map_view_location
             mMapView.onCreate(savedInstanceState)
 
             viewModel = ViewModelProviders
@@ -94,6 +97,7 @@ class MapFragment : Fragment(), AMapLocationListener {
         }
 
         aMap.setOnMarkerClickListener{
+            //如果点击的是本身定位marker
             if (it.position.latitude == aMap.myLocation.latitude
                 && it.position.longitude == aMap.myLocation.longitude)
                 return@setOnMarkerClickListener true
@@ -150,6 +154,10 @@ class MapFragment : Fragment(), AMapLocationListener {
 
         aMap.setOnMapLongClickListener {
 
+        }
+
+        mLocationBtn.setOnClickListener {
+            aMap.moveCamera(CameraUpdateFactory.changeLatLng(currLatLng))
         }
     }
 
@@ -248,9 +256,6 @@ class MapFragment : Fragment(), AMapLocationListener {
         }
     }
 
-    fun onLocateBtnClick(view: View) {
-        aMap.moveCamera(CameraUpdateFactory.changeLatLng(currLatLng))
-    }
 
     override fun onResume() {
         super.onResume()

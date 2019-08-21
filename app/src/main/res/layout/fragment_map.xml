@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+	>
+	
     <com.amap.api.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
@@ -14,6 +14,7 @@
     </com.amap.api.maps.MapView>
 	
 	<ImageButton
+		android:id="@+id/map_view_location"
 		android:layout_width="40dp"
 		android:layout_height="40dp"
 		android:layout_marginStart="8dp"
@@ -21,7 +22,6 @@
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintStart_toStartOf="@+id/mapView"
 		android:src="@drawable/ic_navigation"
-		android:onClick="onLocateBtnClick"
 		/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
